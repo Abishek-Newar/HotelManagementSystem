@@ -16,7 +16,7 @@ const Signup = () => {
                 password
             })
             alert("signedup")
-            navigate("/home")
+            navigate("/")
         } catch (error) {
             console.log(error)
             alert("error while signin up")
@@ -38,7 +38,7 @@ export function LabeledInput({id,onChange,type,name}){
     return(
         <label htmlFor={id}>
             <p>{name}</p>
-            <input type={type} id={id} name={name} />
+            <input type={type} id={id} name={name} onChange={onChange} />
         </label>
     )
 }
