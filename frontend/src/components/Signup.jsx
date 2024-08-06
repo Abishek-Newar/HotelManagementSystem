@@ -15,6 +15,7 @@ const Signup = () => {
                 email,
                 password
             })
+            localStorage.setItem("token",response.data.token)
             alert("signedup")
             navigate("/")
         } catch (error) {
