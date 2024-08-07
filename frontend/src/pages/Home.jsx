@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Hero from '../components/Hero'
+import Navbar from '../components/Navabr'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -9,7 +11,10 @@ const Home = () => {
         }
     },[])
   return (
-    <div>Home</div>
+    <>
+    <Navbar />
+    <Hero />
+    </>
   )
 }
 
