@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Hero from '../components/Hero'
 import Navbar from '../components/Navabr'
+import CheckAvailabity from '../components/checkAvailabity'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -14,6 +15,7 @@ const Home = () => {
     <>
     <Navbar />
     <Hero />
+    <CheckAvailabity />
     </>
   )
 }
