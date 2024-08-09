@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { Link, useNavigate } from 'react-router-dom';
+import { Button, LabeledInput } from './Signin';
+import signPage from "/public/signinPage.jpg"
 const Signup = () => {
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
@@ -24,24 +26,21 @@ const Signup = () => {
         }
     }
   return (
-    <div>
-        <LabeledInput id="fname" name="First Name" type="text" onChange={(e)=>{setFirstName(e.target.value)}}  />
-        <LabeledInput id="lname" name="Last Name" type="text" onChange={(e)=>{setLastName(e.target.value)}}  />
-        <LabeledInput id="email" name="Email" type="email" onChange={(e)=>{setEmail(e.target.value)}}  />
-        <LabeledInput id="password" name="Password" type="password" onChange={(e)=>{setPassword(e.target.value)}}  />
-        <button onClick={submit}>Signup</button>
-        <p>Already hava a account? <Link to="/signin">SignUp</Link></p>
+    <div className='min-h-screen bg-cover flex items-center justify-end pr-[20%]' style={{backgroundImage: `url(${signPage})`}}>
+        
+        <div className='w-[350px] h-auto gap-5 bg-white flex flex-col px-6 py-10 rounded-lg shadow-md drop-shadow-md  '>
+        <h1 className='text-2xl font-bold uppercase text-center'>Sign In</h1>
+        <LabeledInput id="fname" name="First Name" type="text" onChange={(e)=>{setFirstName(e.target.value)}} placeholder="Abishek"  />
+        <LabeledInput id="lname" name="Last Name" type="text" onChange={(e)=>{setLastName(e.target.value)}} placeholder="Newar"  />
+        <LabeledInput id="email" name="Email" type="email" onChange={(e)=>{setEmail(e.target.value)}} placeholder="abi@gmail.com"  />
+        <LabeledInput id="password" name="Password" type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="******"  />
+        <Button onClick = {submit}>Sign up</Button>
+        <p>Already hava a account? <Link to="/signin" className='lowercase underline'>SignUp</Link></p>
+        </div>
     </div>
   )
 }
 
-export function LabeledInput({id,onChange,type,name}){
-    return(
-        <label htmlFor={id}>
-            <p>{name}</p>
-            <input type={type} id={id} name={name} onChange={onChange} />
-        </label>
-    )
-}
+
 
 export default Signup
