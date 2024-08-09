@@ -8,7 +8,7 @@ const Signin = () => {
     const navigate = useNavigate()
     async function submit(){
         try {
-            const response = await axios.post("http://localhost:3001/user/signin",{
+            const response = await axios.post("http://localhost:3000/user/signin",{
                 email,
                 password
             })
