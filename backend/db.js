@@ -10,5 +10,14 @@ const userSchema = new mongoose.Schema({
     email:String,
     password:String
 })
+
+const queriesSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    phone: Number,
+    querriesRelatedTo: String,
+    resolved: Boolean
+})
 const User = mongoose.model("User",userSchema)
-module.exports= User
+const Queries = mongoose.model("Queries",queriesSchema)
+module.exports= {User, Queries}

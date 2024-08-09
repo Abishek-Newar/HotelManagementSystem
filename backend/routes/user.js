@@ -1,7 +1,7 @@
 const express =  require("express")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const User = require ("../db")
+const {User} = require ("../db")
 require("dotenv").config()
 
 const userRouter= express.Router()

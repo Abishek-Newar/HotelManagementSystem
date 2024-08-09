@@ -45,7 +45,7 @@ export function LabeledInput({id,onChange,type,name,placeholder}){
 
 export function Button({children,onClick}){
     return(
-        <button className='h-10 bg-blue-500 rounded-lg text-white font-bold text-lg transition-all ease-linear duration-500 hover:bg-blue-600' onClick={onClick}>{children}</button>
+        <button className='h-10 w-full bg-blue-500 rounded-lg text-white font-bold text-lg transition-all ease-linear duration-500 hover:bg-blue-600' onClick={onClick}>{children}</button>
     )
 }
 
