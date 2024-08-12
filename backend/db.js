@@ -18,6 +18,15 @@ const queriesSchema = new mongoose.Schema({
     querriesRelatedTo: String,
     resolved: Boolean
 })
+
+const roomSchema = new mongoose.Schema({
+    fromDate: String,
+    toDate: String,
+    roomType: String,
+    guests: Number,
+    bookedBy: String
+})
 const User = mongoose.model("User",userSchema)
 const Queries = mongoose.model("Queries",queriesSchema)
-module.exports= {User, Queries}
+const Room = mongoose.model("Room",roomSchema)
+module.exports= {User, Queries, Room}
