@@ -65,25 +65,29 @@ hotelRouter.post("/checkavailability", async (req, res) => {
     
 })
 
-hotelRouter.post("/bookroom",authMiddleware, async(req,res)=>{
-    const {fromDate,toDate,roomType,guests} = req.body;
+hotelRouter.post("/bookroom", authMiddleware, async (req, res) => {
+    const { fromDate, toDate, guests, roomType } = req.body;
     const userId = req.userId;
     try {
-        const bookedBy = await User.findOne({_id: userId})
-        console.log(typeof(bookedBy))
-        const response = await Room.create({
-            fromDate: fromDate,
-            toDate: toDate,
-            roomType: roomType,
-            guests: guests,
-            bookedBy: JSON.stringify(bookedBy)
-        })
-        res.json({msg: "booked sucessfully"})
+      console.log(userId);
+      console.log(guests);
+      const bookedBy = await User.findOne({ _id: userId });
+      console.log(JSON.stringify(bookedBy));
+      const response = await Room.create({
+        fromDate: fromDate,
+        toDate: toDate,
+        roomType: roomType,
+        guests: guests,
+        bookedBy: JSON.stringify(bookedBy),
+      });
+      console.log(response);
+      res.json({ msg: "booked successfully" });
     } catch (error) {
-        console.log("error while booking room",error)
-        res.status(401).json({msg: "error while booking room"})
-    }
-})
+      console.log("error while booking room", error);
+      res.status(401).json({ msg: "error while booking room" });
+        }
+  });
+  
 
 
 

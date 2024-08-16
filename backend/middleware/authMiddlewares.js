@@ -7,8 +7,10 @@ function authMiddleware(req, res, next) {
         if (verifyId) {
             req.userId = verifyId;
             next()
+        }else {
+            return res.status(403).json({ msg: "not verified" })
         }
-        return res.status(403).json({ msg: "not verified" })
+        
     } catch (error) {
         console.log("eror while validating", error)
         return res.status(403).json({ msg: "not verified" })

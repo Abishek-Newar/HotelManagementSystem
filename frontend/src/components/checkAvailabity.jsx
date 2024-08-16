@@ -24,35 +24,38 @@ const CheckAvailabity = () => {
   async function BookAcRoom(){
     try {
       const response = await axios.post("http://localhost:3000/hotel/bookroom",{
-        headers: {
-          authorization: localStorage.getItem("token")
-        }
-      },{
         fromDate: from,
       toDate: toDate,
       guests: guest,
-      roomType: ac
+      roomType: "ac"
+      },{
+        headers: {
+          authorization: localStorage.getItem("token")
+        }
       })
+      alert("booked")
     } catch (error) {
+      console.log(error)
       alert("error while booking")
     }
   }
   async function BookNonAcRoom(){
     try {
       const response = await axios.post("http://localhost:3000/hotel/bookroom",{
-        headers: {
-          authorization: localStorage.getItem("token")
-        }
-      },{
         fromDate: from,
       toDate: toDate,
       guests: guest,
-      roomType: nonac
+      roomType: "nonac"
+      },{
+        headers: {
+          authorization: localStorage.getItem("token")
+        }
       })
+      alert("booked")
     } catch (error) {
+      console.log(error)
       alert("error while booking")
     }
-  }
   }
     return (
     <div>
@@ -77,7 +80,7 @@ const CheckAvailabity = () => {
           acRoom?
           (
             <div className='min-h-32 bg-green-400'>
-              <button>Book</button>
+              <button onClick={BookAcRoom}>Book</button>
             </div>
           )
           :
@@ -87,7 +90,7 @@ const CheckAvailabity = () => {
           nonAcRoom?
           (
             <div className='min-h-32 bg-green-400'>
-              <button>Book</button>
+              <button onClick={BookNonAcRoom}>Book</button>
             </div>
           )
           :
