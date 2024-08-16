@@ -8,13 +8,11 @@ const CheckAvailabity = () => {
   const [nonAcRoom,setNonAcRoom] = useState(false);
   const checkAvailableRoom = async() =>{
     console.log(acRoom)
-    const response = await axios.post("http://localhost:3001/hotel/checkavailability",{
+    const response = await axios.post("http://localhost:3000/hotel/checkavailability",{
       fromDate: from,
       toDate: toDate,
       guests: guest
     })
-    console.log(response.data.acRoom)
-    
     setAcRoom(response.data.ac);
     setNonAcRoom(response.data.nonac)
     
@@ -22,6 +20,40 @@ const CheckAvailabity = () => {
   useEffect(() => {
     console.log('acRoom updated:', acRoom);
   }, [acRoom]);
+
+  async function BookAcRoom(){
+    try {
+      const response = await axios.post("http://localhost:3000/hotel/bookroom",{
+        headers: {
+          authorization: localStorage.getItem("token")
+        }
+      },{
+        fromDate: from,
+      toDate: toDate,
+      guests: guest,
+      roomType: ac
+      })
+    } catch (error) {
+      alert("error while booking")
+    }
+  }
+  async function BookNonAcRoom(){
+    try {
+      const response = await axios.post("http://localhost:3000/hotel/bookroom",{
+        headers: {
+          authorization: localStorage.getItem("token")
+        }
+      },{
+        fromDate: from,
+      toDate: toDate,
+      guests: guest,
+      roomType: nonac
+      })
+    } catch (error) {
+      alert("error while booking")
+    }
+  }
+  }
     return (
     <div>
       <div className='flex justify-around items-center py-10 flex-col md:flex-row'>
