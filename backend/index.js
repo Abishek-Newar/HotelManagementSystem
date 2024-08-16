@@ -10,6 +10,6 @@ app.use(express.json())
 app.use("/user",userRouter)
 app.use("/hotel",hotelRouter) 
 
-app.listen(3001,()=>{
+app.listen(3000,()=>{
     console.log("port conencted")
 })
