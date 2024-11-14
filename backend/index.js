@@ -1,15 +1,12 @@
-const express = require("express")
-const userRouter = require("./routes/user")
-const cors = require("cors")
-const hotelRouter = require("./routes/hotel")
-require("dotenv").config()
+import express from "express"
+
+import dbConnection from "./api/config/db.js"
+import env from "./infrastructure/env.js"
+
+
 const app = express()
-app.use(cors())
-app.use(express.json())
 
-app.use("/user",userRouter)
-app.use("/hotel",hotelRouter) 
-
-app.listen(3000,()=>{
-    console.log("port conencted")
+dbConnection()
+app.listen(env.PORT,()=>{
+    console.log("PORT Connected")
 })
