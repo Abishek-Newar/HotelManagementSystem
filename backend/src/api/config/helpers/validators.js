@@ -8,7 +8,6 @@ export const signupValidator = zod.object({
 })
 
 export const signinValidator = zod.object({
-    username: zod.string(),
     email: zod.string().email(),
     password: zod.string().min(6)
 })
