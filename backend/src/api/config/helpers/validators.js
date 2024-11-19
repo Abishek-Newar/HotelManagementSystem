@@ -11,3 +11,8 @@ export const signinValidator = zod.object({
     email: zod.string().email(),
     password: zod.string().min(6)
 })
+
+export const adminSigninValidator = zod.object({
+    username: zod.string(),
+    password: zod.string().min(6)
+})
