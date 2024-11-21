@@ -16,3 +16,16 @@ export const adminSigninValidator = zod.object({
     username: zod.string(),
     password: zod.string().min(6)
 })
+
+export const ownerSignupValidator = zod.object({
+    name: zod.string(),
+    phone: zod.number(),
+    email: zod.string().email(),
+    idProof: zod.string(),
+    password: zod.string().min(6)
+})
+
+export const OwnerSigninValidator = zod.object({
+    email: zod.string().email(),
+    password: zod.string().min(6)
+})
