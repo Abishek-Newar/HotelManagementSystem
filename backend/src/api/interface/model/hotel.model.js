@@ -1,8 +1,8 @@
 import multer from "multer"
 import fs from "fs"
+import { s3 } from "../../config/db.js"
 
-const upload = multer({storage: multer.memoryStorage()})
-const s3 = new AWS.S3()
+
 export const fileUpload = async(file) =>{
     const params = {
         Bucket: 'abihotel',

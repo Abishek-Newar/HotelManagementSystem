@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import AWS from "aws-sdk"
 import env from "../../infrastructure/env.js"
 // // Import the functions you need from the SDKs you need
 // import { initializeApp } from "firebase/app";
@@ -17,6 +18,13 @@ import env from "../../infrastructure/env.js"
 // const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 
+AWS.config.update({ 
+    accessKeyId: env.AWS_ACCESS_ID, 
+    secretAccessKey: env.AWS_SECRET_KEY, 
+    region: 'ap-south-1' 
+});
+
+export const s3 = new AWS.S3()
 async function dbConnection(){
     await mongoose
        .connect(env.MONGO_URL)

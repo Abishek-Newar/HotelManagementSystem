@@ -4,12 +4,8 @@ const env = {
     PORT: process.env.PORT || 8080,
     MONGO_URL: process.env.MONGO_URL || "",
     SECRET_KEY: process.env.SECRET_KEY || "",
-    API_KEY: process.env.API_KEY || "",
-    AUTH_Domain: process.env.AUTH_Domain || "",
-    PROJECT_Id: process.env.PROJECT_Id || "",
-    STORAGE_Bucket: process.env.STORAGE_Bucket || "",
-    APP_Id: process.env.APP_Id || "",
-    MEASUREMENT_Id: process.env.MEASUREMENT_Id || ""
+    AWS_ACCESS_ID: process.env.AWS_ACCESS_KEY || "",
+    AWS_SECRET_KEY: process.env.AWS_SECRET_ACCESS_KEY || ""
 }
 
 export default env
