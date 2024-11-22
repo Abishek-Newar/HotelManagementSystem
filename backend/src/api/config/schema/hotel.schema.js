@@ -24,6 +24,14 @@ const hotelSchema = new mongoose.Schema({
     unmarriedFriendly:{
         type: Boolean,
         required: true
+    },
+    image:{
+        type: String,
+        required: true
+    },
+    createdBy:{
+        type: String,
+        required: true
     }
 })
 

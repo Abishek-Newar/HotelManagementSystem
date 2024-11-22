@@ -4,7 +4,7 @@ import admin from "../../config/schema/admin.schema.js"
 import jwt from "jsonwebtoken"
 import env from "../../../infrastructure/env.js"
 export const adminSignin = async(req,res) =>{
-    const body = req.body
+    const body = req.body 
     try {
         const success = adminSigninValidator.safeParse(body)
         if(!success.success){

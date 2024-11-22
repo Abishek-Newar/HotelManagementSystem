@@ -29,3 +29,14 @@ export const OwnerSigninValidator = zod.object({
     email: zod.string().email(),
     password: zod.string().min(6)
 })
+
+
+export const hotelValidator = zod.object({
+    name: zod.string(),
+    area: zod.string(),
+    city: zod.string(),
+    state: zod.string(),
+    price: zod.number(),
+    unmarriedFriendly: zod.boolean(),
+    createdBy: zod.string()
+})

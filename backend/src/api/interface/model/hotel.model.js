@@ -1,20 +1,35 @@
 import multer from "multer"
 import fs from "fs"
 import { s3 } from "../../config/db.js"
+import path from "path"
 
 
+const storage = multer.diskStorage({
+    destination: (req,file,cb) =>{
+        cb(null,'/')
+    },
+    filename: (req,file,cb)=>{
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+})
+export const upload = multer({storage: storage})
 export const fileUpload = async(file) =>{
     const params = {
         Bucket: 'abihotel',
         Key: file.filename,
         Body: fs.readFileSync(file.path),
-        ACL: 'public-read'
     }
     s3.upload(params, (err,data) =>{
         if(err){
-            return res.status(500).json({error: err.message})
+            console.log(err)
+            return err
         }
-        const viewUrl = data.location;
-        return viewUrl
+        console.log(data.Location)
     })
+    const url = s3.getSignedUrl('getObject',{
+        Bucket: "abihotel",
+        Key: file.filename,
+    })
+    return url
+
 }
