@@ -7,8 +7,8 @@ const ownerSchema = new mongoose.Schema({
     },
     phone: {
         type: Number,
-        min: 10,
-        max: 10,
+        minLength: 10,
+        maxLength: 10,
         required: true,
     },
     email: {
@@ -19,9 +19,9 @@ const ownerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    passowrd: {
+    password: {
         type: String,
-        min: 6,
+        minLength: 6,
         required: true
     }
 })

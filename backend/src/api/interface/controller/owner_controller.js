@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 import owner from "../../config/schema/owner.schema.js"
 import bcrypt from "bcryptjs"
 import { OwnerSigninValidator, ownerSignupValidator } from "../../config/helpers/validators.js";
-
+import env from "../../../infrastructure/env.js"
 export const ownerSignup = async( req , res) =>{
     const body = req.body;
     console.log(body)
@@ -19,8 +19,9 @@ export const ownerSignup = async( req , res) =>{
         }
         const response = await owner.create({
             name: body.name,
-            ownername: body.ownername,
+            phone:body.phone,
             email: body.email,
+            idProof: body.idProof,
             password: hashedPass
         })
         const token = jwt.sign(response._id.toHexString(),env.SECRET_KEY)
@@ -62,6 +63,8 @@ export const ownerSignin = async(req,res) =>{
         res.status(402).json({msg: "error while signing up"})
     }
 }
+
+
 
 
 

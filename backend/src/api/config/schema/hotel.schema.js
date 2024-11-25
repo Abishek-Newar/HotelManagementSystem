@@ -29,6 +29,26 @@ const hotelSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    AcRoomA:{
+        type: Boolean,
+        required: true
+    },
+    NonAcRoomA:{
+        type: Boolean,
+        required: true
+    },
+    TotalAc: {
+        type: Number,
+        required: true
+    },
+    TotalNonAc: {
+        type: Number,
+        required: true
+    },
+    status:{
+        type:Boolean,
+        required: true
+    },
     createdBy:{
         type: String,
         required: true
