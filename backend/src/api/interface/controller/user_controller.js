@@ -3,6 +3,7 @@ import user from "../../config/schema/user.schema.js"
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import env from "../../../infrastructure/env.js"
+import hotel from "../../config/schema/hotel.schema.js";
 
 export const Signup = async( req , res) =>{
     const body = req.body;
@@ -61,5 +62,22 @@ export const Signin = async(req,res) =>{
     } catch (error) {
         console.log("error while signing up",error)
         res.status(402).json({msg: "error while signing up"})
+    }
+}
+
+export const searchHotel = async(req,res) =>{
+    const body = req.body;
+    try {
+        const search = await hotel.find({$or:[{'city': body.value},{'name':body.value}]})
+        if(search.length === 0){
+            res.json({msg: "sorry we are not available fot that location or name"})
+        }
+        res.json({
+            hotels: search
+        })
+    } catch (error) {
+        console.log("error while searching hotel",error)
+        return res.status(401).json({msg: "error while searching hotel"})
+        
     }
 }
