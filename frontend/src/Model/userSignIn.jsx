@@ -25,6 +25,8 @@ const UserSignin = ({position}) => {
         const response = await axios.post(`${BACKEND_URL}/user/signin`,formData)
         localStorage.setItem("token",response.data.token)
         toast.success("Signin Successful")
+        localStorage.setItem("token",response.data.token)
+        localStorage.setItem("username",response.data.username)
         setTimeout(()=>{
           navigate("/")
         },2000)
