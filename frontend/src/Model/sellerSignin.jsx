@@ -29,9 +29,11 @@ const SellerSignin = ({authType}) => {
         }
     }
   return (
-    <div>
+    <div className='w-[600px] h-[600px] p-6'>
+        <h1>SIGN IN</h1>
         <Input type="email" placeholder="john@gmail.com" name="Email" id="email" onChange={(e)=>handleChange("email",e)}  />
         <Input type="password" placeholder="" name="Password" id="password" onChange={(e)=>handleChange("password",e)}  />
+        <button className='' onChange={handleSubmit}>LOGIN</button>
     </div>
   )
 }

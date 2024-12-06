@@ -3,6 +3,8 @@ import owner from "../../config/schema/owner.schema.js"
 import bcrypt from "bcryptjs"
 import { OwnerSigninValidator, ownerSignupValidator } from "../../config/helpers/validators.js";
 import env from "../../../infrastructure/env.js"
+import hotel from "../../config/schema/hotel.schema.js";
+import bookings from "../../config/schema/booking.schema.js";
 export const ownerSignup = async( req , res) =>{
     const body = req.body;
     console.log(body)
@@ -61,6 +63,19 @@ export const ownerSignin = async(req,res) =>{
     } catch (error) {
         console.log("error while signing up",error)
         res.status(402).json({msg: "error while signing up"})
+    }
+}
+
+export const hotelBookings = async(req,res)=>{
+    try {
+        const hotels =  await hotel.findOne({
+            createdBy: req.userId
+        })
+        const bookings = await bookings.find({hotelId: hotels._id}).populate('name','hotelName')
+        res.json(bookings)
+    } catch (error) {
+        console.log("error while fetching booking of hotel",error)
+        res.json("error whil fetching booking of hotel")
     }
 }
 

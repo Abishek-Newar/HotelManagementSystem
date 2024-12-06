@@ -3,6 +3,7 @@ import { adminSigninValidator } from "../../config/helpers/validators.js"
 import admin from "../../config/schema/admin.schema.js"
 import jwt from "jsonwebtoken"
 import env from "../../../infrastructure/env.js"
+import bookings from "../../config/schema/booking.schema.js"
 export const adminSignin = async(req,res) =>{
     const body = req.body 
     try {
@@ -31,3 +32,15 @@ export const adminSignin = async(req,res) =>{
     }
 }
 
+
+export const AllBookings = async(req,res)=>{
+    try {
+        const response = await bookings.find([]).populate('hotelName','name')
+        res.json(response)
+    } catch (error) {
+        console.log("error while feting all bookings",error)
+        res.status(401).json({
+            msg: "error while fetching al bookings"
+        })
+    }
+}
