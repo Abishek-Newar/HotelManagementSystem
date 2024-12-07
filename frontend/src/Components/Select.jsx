@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Select = ({ children,title }) => {
+const Select = ({ children,title, onChange }) => {
     return (
         <label htmlFor="">
             <h1>{title}</h1>
-            <select>
+            <select onChange={onChange}>
                 {children}
             </select>
         </label>

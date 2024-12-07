@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose,{Schema} from "mongoose"
 
 
 const bookSchema = new mongoose.Schema({
@@ -18,16 +18,16 @@ const bookSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    bookedBy: {
+    bookedBy: [{
         type: Schema.Types.ObjectId,
         ref: 'users',
         required: true
-    },
-    hotelId: {
+    }],
+    hotelId: [{
         type: Schema.Types.ObjectId,
         ref: 'hotels',
         required: true
-    }
+    }]
 })
 const bookings = mongoose.model("bookings",bookSchema)
 

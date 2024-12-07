@@ -16,7 +16,7 @@ export const addHotel = async(req,res) =>{
         // }
         const url = await fileUpload(file)
         const response = await hotel.create({
-            name: body.name,
+            hotelName: body.name,
             area: body.area,
             city: body.city,
             state: body.state,

@@ -10,20 +10,24 @@ const SellerSignup = ({authType}) => {
     const [formData,setFormData] = React.useState({
         name: "",
         email: "",
-        phone: "",
+        phone: null,
         idProof: "",
         password: ""
     })
 
-    function handleChange({type,e}){
+    function handleChange(type,e){
         setFormData({
             ...formData,
             [type]: e.target.value
         })
     }
     async function handleSubmit(){
+        const data = {
+            ...formData,
+            phone: parseInt(formData.phone)
+        }
         try {
-            const response = await axios.post(`${BACKEND_URL}/v1/owner/signup`,formData)
+            const response = await axios.post(`${BACKEND_URL}/owner/signup`,data)
             toast.success("Signup Successful")
             localStorage.setItem("token",response.data.token)
         localStorage.setItem("username",response.data.username)
@@ -43,6 +47,8 @@ const SellerSignup = ({authType}) => {
         <Input type="number" placeholder="9876543210" name="Phone" id="phone" onChange={(e)=>handleChange("phone",e)}  />
         <Input type="text" placeholder="CIX897654" name="Id Proof" id="idproof" onChange={(e)=>handleChange("idProof",e)}  />
         <Input type="password" placeholder="" name="Password" id="password" onChange={(e)=>handleChange("password",e)}  />
+        <button className='' onClick={handleSubmit}>Sign Up</button>
+        <p>Don't have a account? <a onClick={()=>{authType("signin")}}>Signin</a></p>
         <Toaster />
     </div>
   )

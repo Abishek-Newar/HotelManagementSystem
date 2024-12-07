@@ -23,7 +23,7 @@ const AddHotel = () => {
 
   const states = [ "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal" ];
 
-  function handleChange({type,e}){
+  function handleChange(type,e){
     setDetails({
       ...details,
       [type]: e.target.value
@@ -31,6 +31,7 @@ const AddHotel = () => {
   }
 
   async function handleSubmit(){
+    console.log(details)
     let formData = new FormData();
     formData.append("name",details.name);
     formData.append("area",details.area)
@@ -41,13 +42,15 @@ const AddHotel = () => {
     formData.append("file",details.image)
     formData.append("AcRoomA",details.AcRoomA)
     formData.append("NonAcRoomA",details.NonAcRoomA)
-    formData.append("TotalA",details.TotalAc)
+    formData.append("TotalAc",details.TotalAc)
     formData.append("TotalNonAc",details.TotalNonAc)
+    
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/v1/owner/addhotel`,formData,{
+      console.log(formData)
+      const response = await axios.post(`${BACKEND_URL}/owner/addhotel`,formData,{
         headers: {
-          authorization: localStorage.getItem("token")
+          authorization: `Bearer ${localStorage.getItem("token")}`
         }
       })
       toast.success("hotel added")
@@ -65,7 +68,7 @@ const AddHotel = () => {
       <Input type="text" placeholder="John Doe" name="Name" id="name" onChange={(e)=>{handleChange("name",e)}} />
       <Input type="text" placeholder="" name="Area" id="area" onChange={(e)=>{handleChange("area",e)}} />
       <Input type="text" placeholder="" name="City" id="city" onChange={(e)=>{handleChange("city",e)}} />
-      <Select title="State">
+      <Select title="State" onChange={(e)=>{handleChange("state",e)}}>
          <Option value="">Select</Option>
          {
           states.map((item,index)=>(
@@ -74,16 +77,19 @@ const AddHotel = () => {
          }
       </Select>
       <Input type="number" placeholder="500" name="Price" id="price" onChange={(e)=>{handleChange("price",e)}} />
-      <Select title="Unmarried Friendly">
+      <Select title="Unmarried Friendly" onChange={(e)=>{handleChange("unmarriedFriendly",e)}}>
+      <Option value="">Select</Option>
         <Option value="true">Yes</Option>
         <Option value="false">No</Option>
       </Select>
-      <Input type="file" placeholder="" name="Image" id="image" onChange={(e)=>{handleChange("image",e)}} />
-      <Select title="Ac Room Available">
+      <Input type="file" placeholder="" name="Image" id="image" onChange={(e)=>{setDetails({...details,image: e.target.files[0]})}} />
+      <Select title="Ac Room Available" onChange={(e)=>{handleChange("AcRoomA",e)}}>
+      <Option value="">Select</Option>
         <Option value="true">Yes</Option>
         <Option value="false">No</Option>
       </Select>
-      <Select title="Non-Ac Room Available">
+      <Select title="Non-Ac Room Available" onChange={(e)=>{handleChange("NonAcRoomA",e)}}>
+      <Option value="">Select</Option>
         <Option value="true">Yes</Option>
         <Option value="false">No</Option>
       </Select>
