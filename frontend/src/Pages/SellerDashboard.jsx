@@ -1,8 +1,11 @@
 import React from 'react'
+import SellerSideBar from '../Model/sellerSideBar'
 
 const SellerDashboard = () => {
   return (
-    <div>SellerDashboard</div>
+    <div>
+      <SellerSideBar />
+    </div>
   )
 }
 
