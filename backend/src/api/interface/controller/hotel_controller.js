@@ -63,3 +63,20 @@ export const updateHotel = async(req,res)=>{
     }
 }
 
+export const searchHotel = async(req,res)=>{
+    const body = req.body;
+    try{
+        const hotels = await hotel.find({
+            $or: [
+                {hotelName: {$regex: new RegExp("^" + body.hotelName,"i")}},
+                {city: {$regex: new RegExp("^" + body.city,"i")}}
+            ]
+        })
+        console.log(hotels)
+        res.json(hotels)
+    }catch(error){
+        console.log("error while search hotel",error)
+        res.json("error while searching hotels")
+    }
+}
+
