@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import env from "../../../infrastructure/env.js"
 import hotel from "../../config/schema/hotel.schema.js";
+import bookings from "../../config/schema/booking.schema.js";
 
 export const Signup = async( req , res) =>{
     const body = req.body;
@@ -65,19 +66,34 @@ export const Signin = async(req,res) =>{
     }
 }
 
-export const searchHotel = async(req,res) =>{
-    const body = req.body;
-    try {
-        const search = await hotel.find({$or:[{'city': body.value},{'name':body.value}]})
-        if(search.length === 0){
-            res.json({msg: "sorry we are not available fot that location or name"})
-        }
-        res.json({
-            hotels: search
-        })
-    } catch (error) {
-        console.log("error while searching hotel",error)
-        return res.status(401).json({msg: "error while searching hotel"})
+// export const searchHotel = async(req,res) =>{
+//     const body = req.body;
+//     try {
+//         const search = await hotel.find({$or:[{'city': body.value},{'name':body.value}]})
+//         if(search.length === 0){
+//             res.json({msg: "sorry we are not available fot that location or name"})
+//         }
+//         res.json({
+//             hotels: search
+//         })
+//     } catch (error) {
+//         console.log("error while searching hotel",error)
+//         return res.status(401).json({msg: "error while searching hotel"})
         
+//     }
+// }
+
+
+export const myBookings = async(req,res)=>{
+    try{
+        const book = await bookings.find({bookedBy: req.userId})
+        res.json({
+            bookings: book
+        })
+    }catch(error){
+        console.log("error while geting my bookings",error)
+        res.status(403).json({
+            msg: "error while getting my bookings"
+        })
     }
 }
