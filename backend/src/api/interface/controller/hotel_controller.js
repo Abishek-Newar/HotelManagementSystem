@@ -1,5 +1,6 @@
 
 import { hotelValidator } from "../../config/helpers/validators.js"
+import bookings from "../../config/schema/booking.schema.js"
 import hotel from "../../config/schema/hotel.schema.js"
 import { fileUpload } from "../model/hotel.model.js"
 
@@ -69,6 +70,7 @@ export const searchHotel = async(req,res)=>{
         const hotels = await hotel.find({
             $or: [
                 {hotelName: {$regex: new RegExp("^" + body.hotelName,"i")}},
+                {area: {$regex: new RegExp("^" + body.area,"i")}},
                 {city: {$regex: new RegExp("^" + body.city,"i")}}
             ]
         })
@@ -77,6 +79,27 @@ export const searchHotel = async(req,res)=>{
     }catch(error){
         console.log("error while search hotel",error)
         res.json("error while searching hotels")
+    }
+}
+
+export const bookHotel = async(req,res)=>{
+    const body = req.body;
+    try {
+        const book = await bookings.create({
+            fromDate: body.fromDate,
+            toDate: body.toDate,
+            guests: body.guests,
+            RoomType: body.RoomType,
+            bookedBy: req.userId,
+            hotelId: body.hotelId
+        })
+
+        res.json({
+            msg: " hotel booked" 
+        })
+    } catch (error) {
+        console.log("error while booking hotel",error)
+        res.status(403).json({msg: "error while booking hotel"})
     }
 }
 
