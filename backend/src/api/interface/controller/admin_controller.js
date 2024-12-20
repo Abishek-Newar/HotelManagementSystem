@@ -6,7 +6,7 @@ import env from "../../../infrastructure/env.js"
 import bookings from "../../config/schema/booking.schema.js"
 import hotel from "../../config/schema/hotel.schema.js"
 import owner from "../../config/schema/owner.schema.js"
-import { sendWarningMail } from "../../lib/mailer.js"
+import { accountDeleteMessage, sendWarningMail } from "../../lib/mailer.js"
 export const adminSignin = async(req,res) =>{
     const body = req.body 
     try {
@@ -65,6 +65,10 @@ export const deleteHotel = async(req,res)=>{
     const body = req.body
     try {
         const respones = await hotel.deleteOne({_id: body.id})
+        const user = await owner.findOne({
+            _id: respones.createdBy
+        })
+        await accountDeleteMessage(user.email)
         res.json({msg: "hotel deleted"})
     } catch (error) {
         console.log("error while deleting hotel",error)
