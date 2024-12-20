@@ -99,7 +99,7 @@ export const searchHotel = async(req,res)=>{
             }else{
                 RoomType = "TotalNonAc"
             }
-            if((response[i][RoomType] - roomsBooked) >0){
+            if((response[i][RoomType] - (roomsBooked + body.totalRooms )) >0 ){
                 hotels.push(response[i])
             }
         }

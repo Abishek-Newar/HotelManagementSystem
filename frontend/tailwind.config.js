@@ -7,7 +7,8 @@ export default {
         secondary: "#12B7F2",
         priamry: "#3286DB",
         priamryBg: "#F4FAFF",
-        borders: "#2F323A"
+        borders: "#2F323A",
+        bgColor: "#E2E1DF"
       },
     },
   },
