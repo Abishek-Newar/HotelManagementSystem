@@ -1,7 +1,7 @@
 import React from 'react'
-import Input from "../Components/Input"
-import Select, { Option } from '../Components/Select'
-import {BACKEND_URL} from "../../config"
+import Input from "../../Components/Input"
+import Select, { Option } from '../../Components/Select'
+import {BACKEND_URL} from "../../../config"
 import axios from "axios"
 import {toast, Toaster} from "sonner"
 import { useNavigate } from 'react-router-dom'

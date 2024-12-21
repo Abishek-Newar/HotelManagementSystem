@@ -1,5 +1,5 @@
 import React from 'react'
-import SellerSideBar from '../Model/sellerSideBar'
+import SellerSideBar from '../../Model/Owner/sellerSideBar'
 
 const SellerDashboard = () => {
   return (

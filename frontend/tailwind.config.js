@@ -16,6 +16,10 @@ export default {
     fontFamily: {
       'primary': ['Poppins','serif']
     },
+    fontWeight: { 
+      bold: 700,
+      semibold: 600,
+     }
   },
   plugins: [],
 }

@@ -1,7 +1,7 @@
 import React from 'react'
-import Input from '../Components/Input'
+import Input from '../../Components/Input'
 import axios from "axios"
-import { BACKEND_URL } from '../../config'
+import { BACKEND_URL } from '../../../config'
 import {Toaster, toast} from "sonner"
 import {useNavigate, Link} from "react-router-dom"
 const UserSignin = ({position}) => {

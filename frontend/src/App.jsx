@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import UserAuth from "./Pages/userAuth"
+import UserAuth from "./Pages/User/userAuth"
 import Landing from "./Pages/Landing"
-import AddHotel from "./Pages/addHotel"
-import SellerAuth from "./Pages/SellerAuth"
-import SellerDashboard from "./Pages/SellerDashboard"
+import AddHotel from "./Pages/Owner/addHotel"
+import SellerAuth from "./Pages/Owner/SellerAuth"
+import SellerDashboard from "./Pages/Owner/SellerDashboard"
 
 
 function App() {

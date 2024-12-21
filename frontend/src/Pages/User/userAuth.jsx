@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import UserSignup from '../Model/userSignup'
-import UserSignin from '../Model/userSignIn'
+import UserSignup from '../../Model/User/userSignup'
+import UserSignin from '../../Model/User/userSignIn'
 import hotel from "/authbg.jpeg"
 const UserAuth = () => {
   const [position,setPosition] = useState("signup")

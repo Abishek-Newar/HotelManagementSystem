@@ -23,17 +23,17 @@ const Hero = () => {
         <h1 className='text-center font-primary text-[270px] p-0  leading-none '>dream stay</h1>
         <img className='absolute w-[84vw] h-[50vh] bg-cover translate-x-[8vw] top-[38.5vh] rounded-xl' src="/bedroom.jpg" alt="" />
         <div className='absolute w-[75vw] h-[10vh] border border-secondaryText bg-[#E4E3DF] translate-x-[13vw] top-[83vh] rounded-2xl flex justify-between p-4'>
-          <label forhtml="location">
-            <div className='flex gap-2 items-center text-lg'>
-              <IoLocationOutline className='text-secondaryC' />
-              <p className='text-secondaryText  '>City or Destintaion</p>
+          <label forhtml="location" className='flex flex-col items-center'>
+            <div className='flex gap-2 items-center '>
+              <IoLocationOutline className='text-secondaryC text-2xl' />
+              <p className='text-secondaryText text-lg  '>City or Destintaion</p>
             </div>
-            <input type="text" className='bg-transparent focus:border-none text-center' id='location' value={values.value} />
+            <input type="text" className='bg-transparent focus:border-none font-bold text-center text-xl ' id='location' value={values.value} />
           </label>
           <label forhtml="bookingdate">
-          <div   className='flex gap-2 items-center text-lg'>
-              <MdOutlineDateRange className='text-secondaryC' />
-              <p>Booking Dates</p>
+          <div   className='flex gap-2 items-center  '>
+              <MdOutlineDateRange className='text-secondaryC text-2xl' />
+              <p className='text-lg text-secondaryText'>Booking Dates</p>
             </div>
             <div className='flex gap-2'>
             <input  type="date" name="" id="bookingdate"  className='bg-transparent w-28'/>
@@ -42,11 +42,11 @@ const Hero = () => {
 
           </label>
           <div>
-          <div  className='flex gap-2 items-center text-lg'>
-              <GoPeople  className='text-secondaryC'/>
-              <p>Guests and Rooms</p>
+          <div  className='flex gap-2 items-center cursor-pointer ' id='guests'>
+              <GoPeople  className='text-secondaryC text-2xl'/>
+              <p className='text-lg text-secondaryText'>Guests and Rooms</p>
             </div>
-            <div className='flex text-xl font-primary  justify-center' style={{fontWeight:"800"}}> 
+            <div className='flex text-xl  justify-center font-bold' > 
               <p>{values.guests} Adults,</p>
               <p>{values.rooms} Rooms</p>
             </div>

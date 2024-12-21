@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import SellerSignup from '../Model/sellerSignup'
-import SellerSignin from '../Model/sellerSignin'
+import SellerSignup from '../../Model/Owner/sellerSignup'
+import SellerSignin from '../../Model/Owner/sellerSignin'
 
 const SellerAuth = () => {
     const [authType,setAuthType] = useState("signup")
