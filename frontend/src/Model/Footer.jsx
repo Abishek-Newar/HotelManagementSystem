@@ -20,8 +20,8 @@ const Footer = () => {
         <div>
         <h1>Sign Options</h1>
           <ul>
-            <li onClick={()=>{navigate("/seller/auth")}}>Admin</li>
-            <li>Seller</li>
+            <li className='cursor-pointer' onClick={()=>{navigate("/admin/auth")}}>Admin</li>
+            <li className='cursor-pointer' onClick={()=>{navigate("/seller/auth")}}>Seller</li>
           </ul>
         </div>
         <div><h1>Location</h1>
