@@ -9,7 +9,9 @@ const Reviews = () => {
         <div className='flex  justify-around'> 
           {
             review.map((item,index)=>(
-              <ReviewCard author={item.author} quote={item.quote} />
+              <div key={index}>
+                <ReviewCard  author={item.author} quote={item.quote} />
+              </div>
             ))
           }
         </div>

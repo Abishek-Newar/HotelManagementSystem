@@ -3,10 +3,16 @@ import { FaSearch } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineDateRange } from "react-icons/md";
 import { GoPeople } from "react-icons/go";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addItem } from '../../lib/store';
 
 const Hero = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [show,setShow] = React.useState(false)
   const [values,setValues] = React.useState({
-    value: "Mohali",
+    location: "Mohali",
     fromDate: null,
     toDate: null,
     guests: 1,
@@ -14,8 +20,18 @@ const Hero = () => {
     rooms: 1,
   })
 
-  function handleSubmit(){
+  function handleChange(e,type){
+    console.log(e.target.value)
+    setValues(prev=>({
+      ...prev,
+      [type]: e.target.value
+    }))
+  }
 
+  function handleSubmit(){
+    console.log(values)
+    dispatch(addItem(values))
+    navigate("/search")
   }
   return (
     <div className='relative bg-bgColor min-h-screen pt-[10vh] font-primary'>
@@ -28,7 +44,7 @@ const Hero = () => {
               <IoLocationOutline className='text-secondaryC text-2xl' />
               <p className='text-secondaryText text-lg  '>City or Destintaion</p>
             </div>
-            <input type="text" className='bg-transparent focus:border-none font-bold text-center text-xl ' id='location' value={values.value} />
+            <input type="text" className='bg-transparent focus:border-none font-bold text-center text-xl ' id='location' value={values.location} onChange={(e)=>{handleChange(e,"location")}} />
           </label>
           <label forhtml="bookingdate">
           <div   className='flex gap-2 items-center  '>
@@ -36,19 +52,53 @@ const Hero = () => {
               <p className='text-lg text-secondaryText'>Booking Dates</p>
             </div>
             <div className='flex gap-2'>
-            <input  type="date" name="" id="bookingdate"  className='bg-transparent w-28'/>
-            <input type="date" name="" id=""  className='bg-transparent w-28'/>
+            <input  type="date" name="" id="bookingdate"  className='bg-transparent w-28' onChange={(e)=>handleChange(e,"fromDate")}/>
+            <input type="date" name="" id=""  className='bg-transparent w-28' onChange={(e)=>handleChange(e,"toDate")}/>
             </div>
 
           </label>
           <div>
-          <div  className='flex gap-2 items-center cursor-pointer ' id='guests'>
+          <div  className='flex gap-2 items-center cursor-pointer realtive' id='guests' onClick={()=>setShow(!show)}  >
               <GoPeople  className='text-secondaryC text-2xl'/>
               <p className='text-lg text-secondaryText'>Guests and Rooms</p>
             </div>
+            <div>
             <div className='flex text-xl  justify-center font-bold' > 
               <p>{values.guests} Adults,</p>
               <p>{values.rooms} Rooms</p>
+            </div>
+            {
+              show? (
+                <div className='border border-secondaryText rounded-md absolute top-20 bg-white w-60 h-24'>
+                  <div className='grid grid-cols-2 '>
+                  <div>
+                    <h1>Guests</h1>
+                  <div className='flex justify-between items-center p-1'>
+                    <button className='w-10 h-10 border rounded-full'>
+                      -
+                    </button>
+                    {values.guests}
+                    <button className='w-10 h-10 border rounded-full p-1'>
+                      +
+                    </button>
+                  </div>
+                  </div>
+                  <div>
+                    <h1>Rooms</h1>
+                  <div className='flex justify-between items-center'>
+                    <button className='w-10 h-10 border rounded-full'>
+                      -
+                    </button>
+                    {values.rooms}
+                    <button className='w-10 h-10 border rounded-full'>
+                      +
+                    </button>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+              ):null
+            }
             </div>
           </div>
           <div onClick={handleSubmit} className='h-full w-[7vh] rounded-2xl invert-0 flex justify-center items-center bg-secondaryC'>

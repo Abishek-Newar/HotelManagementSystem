@@ -1,6 +1,6 @@
 import React from 'react'
 import Input from '../../Components/Input'
-import { BACKEND_URL } from '../../../config'
+import { BACKEND_URL } from '../../../lib/config' 
 import { toast, Toaster } from 'sonner'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
