@@ -29,9 +29,24 @@ const Hero = () => {
   }
 
   function handleSubmit(){
-    console.log(values)
+    console.log("values",values)
     dispatch(addItem(values))
     navigate("/search")
+  }
+
+  function handleIncrement(type){
+    setValues(prev=>({
+      ...prev,
+      [type]: prev[type] + 1
+    }))
+  }
+  function handleDecrement(type){
+    if(values[type] >1){
+      setValues(prev=>({
+        ...prev,
+        [type]: prev[type] - 1
+      }))
+    }
   }
   return (
     <div className='relative bg-bgColor min-h-screen pt-[10vh] font-primary'>
@@ -69,31 +84,43 @@ const Hero = () => {
             </div>
             {
               show? (
-                <div className='border border-secondaryText rounded-md absolute top-20 bg-white w-60 h-24'>
+                <div className='border border-secondaryText rounded-md absolute top-20 bg-bgColor w-60 h-32 p-2'>
+                  <div>
                   <div className='grid grid-cols-2 '>
                   <div>
-                    <h1>Guests</h1>
+                    <h1 className='text-xl font-semibold'>Guests</h1>
                   <div className='flex justify-between items-center p-1'>
-                    <button className='w-10 h-10 border rounded-full'>
+                    <button className='w-10 h-10 border border-black rounded-full' onClick={()=>handleDecrement("guests")} >
                       -
                     </button>
                     {values.guests}
-                    <button className='w-10 h-10 border rounded-full p-1'>
+                    <button className='w-10 h-10 border border-black rounded-full p-1' onClick={()=>handleIncrement("guests")}>
                       +
                     </button>
                   </div>
                   </div>
                   <div>
-                    <h1>Rooms</h1>
+                    <h1 className='text-xl font-semibold'>Rooms</h1>
                   <div className='flex justify-between items-center'>
-                    <button className='w-10 h-10 border rounded-full'>
+                    <button className='w-10 h-10 border border-black rounded-full' onClick={()=>handleDecrement("rooms")}>
                       -
                     </button>
                     {values.rooms}
-                    <button className='w-10 h-10 border rounded-full'>
+                    <button className='w-10 h-10 border border-black rounded-full' onClick={()=>handleIncrement("rooms")}>
                       +
                     </button>
                   </div>
+                  </div>
+                  </div>
+                  <div className='flex items-center justify-around'>
+                  <label htmlFor="" className='flex gap-2'>
+                    <input type="radio" name="roomtype" id="room type" onChange={()=>{setValues(prev=>({...prev,RoomType:"AC"}))}} />
+                    <p className='text-lg' >AC</p>
+                  </label>
+                  <label htmlFor="" className='flex gap-2'>
+                  <input type="radio" name="roomtype" id="roomtype" onChange={()=>{setValues(prev=>({...prev,RoomType:"NonAC"}))}} />
+                  <p className='text-lg' >NON-AC</p>
+                  </label>
                   </div>
                   </div>
                 </div>

@@ -17,7 +17,7 @@ const hotelSlice = createSlice({
             state.to = action.payload.toDate
             state.guests = action.payload.guests
             state.Rooms = action.payload.rooms
-            state.RoomType = action.payload.roomtype
+            state.RoomType = action.payload.RoomType
         }
     }
 })
