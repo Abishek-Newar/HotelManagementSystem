@@ -70,9 +70,9 @@ export const searchHotel = async(req,res)=>{
         let hotels = []
         const response = await hotel.find({
             $or: [
-                {hotelName: {$regex: new RegExp("^" + body.value,"i")}},
-                {area: {$regex: new RegExp("^" + body.value,"i")}},
-                {city: {$regex: new RegExp("^" + body.value,"i")}}
+                {hotelName: {$regex: new RegExp("^" + body.location,"i")}},
+                {area: {$regex: new RegExp("^" + body.location,"i")}},
+                {city: {$regex: new RegExp("^" + body.location,"i")}}
             ]
         })
         const checkFromDate = new Date(body.fromDate)
@@ -91,7 +91,7 @@ export const searchHotel = async(req,res)=>{
                     {toDate: {$gte: checkFromDate}}
                 ]
             })
-            const roomsBooked = overlappingBookings.length;
+            const roomsBooked = overlappingBookings.reduce((accumulator,item)=> { return accumulator + item.rooms},0)
             console.log(roomsBooked)
             let RoomType = "";
             if(body.RoomType = "AC"){
@@ -99,7 +99,7 @@ export const searchHotel = async(req,res)=>{
             }else{
                 RoomType = "TotalNonAc"
             }
-            if((response[i][RoomType] - (roomsBooked + body.totalRooms )) >0 ){
+            if((response[i][RoomType] - (roomsBooked + body.rooms )) >0 ){
                 hotels.push(response[i])
             }
         }
@@ -117,6 +117,7 @@ export const bookHotel = async(req,res)=>{
             fromDate: new Date(body.fromDate),
             toDate: new Date(body.toDate),
             guests: body.guests,
+            rooms: body.rooms,
             RoomType: body.RoomType,
             bookedBy: req.userId,
             hotelId: body.hotelId
