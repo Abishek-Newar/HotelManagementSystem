@@ -10,6 +10,7 @@ export const addHotel = async(req,res) =>{
     const file = req.file
     console.log(file)
     console.log(body)
+    console.log(Date.now())
     try {
         // const success = hotelValidator.safeParse(body)
         // if(!success.success){
@@ -31,8 +32,11 @@ export const addHotel = async(req,res) =>{
             status: true,
             createdBy: req.userId
         })
-
-        res.json({msg: "hotel added"})
+    
+        res.json({
+            msg: "hotel added",
+            filename: uploaded.filename
+        })
     } catch (error) {
         console.log(error)
         return res.status(403).json({msg: "error while adding hotel "})

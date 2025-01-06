@@ -5,7 +5,7 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { GoPeople } from "react-icons/go";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addItem } from '../../lib/store';
+import { updateItem } from '../../lib/store';
 
 const Hero = () => {
   const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const Hero = () => {
 
   function handleSubmit(){
     console.log("values",values)
-    dispatch(addItem(values))
+    dispatch(updateItem(values))
     navigate("/search")
   }
 
