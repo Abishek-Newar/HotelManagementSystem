@@ -37,7 +37,6 @@ export const addHotel = async(req,res) =>{
     
         res.json({
             msg: "hotel added",
-            filename: uploaded.filename
         })
     } catch (error) {
         console.log(error)
