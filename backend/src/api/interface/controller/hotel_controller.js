@@ -1,4 +1,5 @@
 
+import env from "../../../infrastructure/env.js"
 import { hotelValidator } from "../../config/helpers/validators.js"
 import bookings from "../../config/schema/booking.schema.js"
 import hotel from "../../config/schema/hotel.schema.js"
@@ -16,7 +17,8 @@ export const addHotel = async(req,res) =>{
         // if(!success.success){
         //     return res.status(401).json({msg: "data not in format"})
         // }
-        const url = await fileUpload(file)
+        const uploaded = await fileUpload(file)
+        const url = `${env.CLOUDFRONT_DOMAIN}/${uploaded.filename}`
         const response = await hotel.create({
             hotelName: body.name,
             area: body.area,

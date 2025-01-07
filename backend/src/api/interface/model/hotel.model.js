@@ -26,10 +26,12 @@ export const fileUpload = async(file) =>{
         }
         console.log(data.Location)
     })
-    const url = s3.getSignedUrl('getObject',{
-        Bucket: "abihotel",
-        Key: file.filename,
-    })
-    return url
+    // const url = s3.getSignedUrl('getObject',{
+    //     Bucket: "abihotel",
+    //     Key: file.filename,
+    // })
+    return {
+        filename: file.filename
+    }
 
 }
