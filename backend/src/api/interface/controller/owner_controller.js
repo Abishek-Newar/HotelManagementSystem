@@ -79,6 +79,18 @@ export const hotelBookings = async(req,res)=>{
     }
 }
 
+export const myHotels = async(req,res)=>{
+    try{
+        const hotels = await hotel.find({createdBy: req.userId})
+        res.json({hotels})
+    }catch(e){
+        console.log("error in geting my hotels",e)
+        res.status(401).json({
+            msg: "error while getting my hotels"
+        })
+    }
+}
+
 
 
 

@@ -9,6 +9,9 @@ const SellerSideBar = ({page,setPage,setShowSidebar,showSidebar}) => {
       name: "Bookings",
       set: ()=>setPage("bookings")
     },{
+      name: "My Hotels",
+      set: ()=>setPage("myhotel")
+    },{
       name: "Edit Hotel",
       set: ()=>setPage("edit")
     }]
