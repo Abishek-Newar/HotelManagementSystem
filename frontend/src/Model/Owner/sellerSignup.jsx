@@ -41,14 +41,17 @@ const SellerSignup = ({authType}) => {
 
     }
   return (
-    <div>
+    <div className='w-[400px] flex flex-col gap-3 font-primary p-10'>
+        <h1 className='font-logo text-center text-3xl'>SIGN UP</h1>
+        <div className='flex flex-col gap-2'>
         <Input type="text" placeholder="John Doe" name="Name" id="name" onChange={(e)=>handleChange("name",e)}  />
         <Input type="email" placeholder="john@gmail.com" name="Email" id="email" onChange={(e)=>handleChange("email",e)}  />
         <Input type="number" placeholder="9876543210" name="Phone" id="phone" onChange={(e)=>handleChange("phone",e)}  />
         <Input type="text" placeholder="CIX897654" name="Id Proof" id="idproof" onChange={(e)=>handleChange("idProof",e)}  />
         <Input type="password" placeholder="" name="Password" id="password" onChange={(e)=>handleChange("password",e)}  />
-        <button className='' onClick={handleSubmit}>Sign Up</button>
-        <p>Don't have a account? <a onClick={()=>{authType("signin")}}>Signin</a></p>
+        </div>
+        <button className=' bg-secondaryC h-10 rounded-lg text-white text-bold' onClick={handleSubmit}>Sign Up</button>
+        <p className='text-secondaryText'>Don't have a account? <a className='underline hover:text-black cursor-pointer' onClick={()=>{authType("signin")}}>Signin</a></p>
         <Toaster />
     </div>
   )

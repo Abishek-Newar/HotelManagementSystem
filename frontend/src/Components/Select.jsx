@@ -4,7 +4,7 @@ const Select = ({ children,title, onChange }) => {
     return (
         <label htmlFor="">
             <h1>{title}</h1>
-            <select onChange={onChange}>
+            <select className='w-full h-10 border text-center' onChange={onChange}>
                 {children}
             </select>
         </label>
@@ -13,7 +13,7 @@ const Select = ({ children,title, onChange }) => {
 
 export const Option = ({ children, value }) => {
     return (
-        <option value={value}>
+        <option className='' value={value}>
             {children}
         </option>
     )
