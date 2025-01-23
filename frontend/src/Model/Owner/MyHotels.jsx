@@ -22,13 +22,13 @@ const MyHotels = () => {
         {
             hotels.length === 0?
             <>No Hotels Added Yet</>:
-            <>
+            <div>
              {
                 hotels.map((item,index)=>(
                     <HotelCard item={item} />
                 ))
              }
-            </>
+            </div>
         }
     </div>
   )

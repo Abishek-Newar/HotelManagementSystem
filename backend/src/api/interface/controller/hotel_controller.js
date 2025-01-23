@@ -71,6 +71,7 @@ export const updateHotel = async(req,res)=>{
 
 export const searchHotel = async(req,res)=>{
     const body = req.body;
+    console.log(body)
     try{
         let hotels = []
         const response = await hotel.find({

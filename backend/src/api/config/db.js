@@ -29,7 +29,7 @@ async function dbConnection(){
     await mongoose
        .connect(env.MONGO_URL)
        .then(()=>{
-        console.log("mongo dabase connected")
+        console.log("mongodb database connected")
        })
        .catch((err)=>{
         console.log("Error while connecting mogoose",err)

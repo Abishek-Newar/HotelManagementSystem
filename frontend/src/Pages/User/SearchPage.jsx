@@ -3,6 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { BACKEND_URL } from "../../../lib/config.js"
 import { toast, Toaster } from 'sonner'
+import HotelCard from '../../Components/HotelCard.jsx'
 const SearchPage = () => {
   const items = useSelector(state => state)
   const [loading, setLoading] = React.useState(true)
@@ -34,6 +35,13 @@ const SearchPage = () => {
           ) : (
             <div>
               <h1>{hotels.length} found in {items.updateItem.location}</h1>
+              {
+                hotels.map((item,index)=>(
+                  <div key={index}>
+                    <HotelCard item={item} />
+                  </div>
+                ))
+              }
             </div>
           )
       }
