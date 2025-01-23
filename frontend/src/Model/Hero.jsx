@@ -10,6 +10,7 @@ import { updateItem } from '../../lib/store';
 const Hero = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const today = new Date().toISOString().split('T')[0]
   const [show,setShow] = React.useState(false)
   const [values,setValues] = React.useState({
     location: "Mohali",
@@ -67,8 +68,8 @@ const Hero = () => {
               <p className='text-lg text-secondaryText'>Booking Dates</p>
             </div>
             <div className='flex gap-2'>
-            <input  type="date" name="" id="bookingdate"  className='bg-transparent w-28' onChange={(e)=>handleChange(e,"fromDate")}/>
-            <input type="date" name="" id=""  className='bg-transparent w-28' onChange={(e)=>handleChange(e,"toDate")}/>
+            <input  type="date" name="" id="bookingdate"  className='bg-transparent w-28' min={today} onChange={(e)=>handleChange(e,"fromDate")}/>
+            <input type="date" name="" id=""  className='bg-transparent w-28' min={today} onChange={(e)=>handleChange(e,"toDate")}/>
             </div>
 
           </label>
