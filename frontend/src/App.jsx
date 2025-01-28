@@ -6,6 +6,7 @@ import SellerAuth from "./Pages/Owner/SellerAuth"
 import SellerDashboard from "./Pages/Owner/SellerDashboard"
 import AdminAuth from "./Pages/Admin/AdminAuth"
 import SearchPage from "./Pages/User/SearchPage"
+import BookHotel from "./Pages/User/BookHotel"
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route path="/seller/dashboard" element={<SellerDashboard />}  />
       <Route path="/admin/auth" element={<AdminAuth />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/booknow" element={<BookHotel />} />
     </Routes>
     </BrowserRouter>
     </>
