@@ -26,6 +26,7 @@ const UserSignin = ({position}) => {
         localStorage.setItem("token",response.data.token)
         toast.success("Signin Successful")
         localStorage.setItem("username",response.data.username)
+        localStorage.setItem("type","user")
         setTimeout(()=>{
           navigate("/")
         },2000)

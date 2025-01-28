@@ -3,25 +3,18 @@ import { useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
 
 
-const HotelCard = ({item}) => {
-  const navigate = useNavigate()
-  const items = useSelector(state => state)
+const HotelCard = ({item,buttonName,buttonClick}) => {
   
-  function BookNow(){
-    let data = {
-      seacrhDetails: items.updateItem,
-      hotelDetails: item
-    }
-    navigate("/booknow",{state: data})
-  }
+  
   return (
-    <div>
+    <div className='w-[70%] border-b flex justify-around p-2 items-center'>
+      <div className={`w-36 h-36`} style={{background:`url(${item.image})`,backgroundSize:"cover"}}></div>
         <ul>
-            <li>{item.hotelName}</li>
-            <li>{item.area}</li>
-            <li>{item.price}</li>
+            <li className='text-2xl font-bold'>{item.hotelName}</li>
+            <li className='text-lg font-semibold'>{item.area},{item.city}</li>
+            <li className='text-xl '>$ {item.price}</li>
         </ul>
-        <button onClick={BookNow}>Book Now</button>
+        <button className='bg-secondaryC h-12 text-white p-2 rounded-lg font-bold uppercase' onClick={buttonClick}>{buttonName}</button>
     </div>
   )
 }
