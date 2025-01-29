@@ -24,12 +24,12 @@ const bookSchema = new mongoose.Schema({
     },
     bookedBy: [{
         type: Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'user',
         required: true
     }],
     hotelId: [{
         type: Schema.Types.ObjectId,
-        ref: 'hotels',
+        ref: 'hotel',
         required: true
     }]
 })
