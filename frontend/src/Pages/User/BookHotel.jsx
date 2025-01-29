@@ -39,12 +39,31 @@ const BookHotel = () => {
   return (
    <>
    <Navbar />
-   <div className='p-[60px]'>
+   <div className='p-[60px] font-primary '>
       <div className='h-[60vh] w-full' style={{background:`url(${data.hotelDetails.image})`,backgroundSize:"cover"}}></div>
-      <h1 className='uppercase '>{data.hotelDetails.hotelName}</h1>
-      <h2>{data.hotelDetails.area}, {data.hotelDetails.city}</h2>
-      <h3>$ {data.hotelDetails.price}</h3>
-      <button onClick={handleBook} >BOOK NOW</button>
+      
+
+      <div className='flex justify-around mt-10'>
+        <div>
+        <h1 className='uppercase text-3xl font-bold '>{data.hotelDetails.hotelName}</h1>
+      <h2 className='uppercase text-xl font-semibold'>{data.hotelDetails.area}, {data.hotelDetails.city}</h2>
+      <h3 className='uppercase text-2xl font-bold'>$ {data.hotelDetails.price}</h3>
+        </div>
+        <div>
+        <h1>Booking Details</h1>
+        <ul>
+          <li>From: <span className='text-green-500'>{data.searchDetails.fromDate}</span></li>
+          <li>To: <span className='text-green-500'>{data.searchDetails.toDate}</span></li>
+          <li>Rooms: <span className='text-green-500'>{data.searchDetails.rooms}</span></li>
+          <li>Room Type: <span className='text-green-500'>{data.searchDetails.roomType}</span></li>
+          <li>Guests: <span className='text-green-500'>{data.searchDetails.guests}</span></li>
+        </ul>
+        </div>
+      </div>
+      <div className='flex justify-center'>
+      <button onClick={handleBook} className='h-12 bg-green-500 hover:bg-green-600 rounded-lg transition-all ease-linear duration-300 p-2 text-white font-bold' >Confirm Booking</button>
+
+      </div>
       <Toaster />
     </div>
    </>

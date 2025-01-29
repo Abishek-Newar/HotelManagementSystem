@@ -10,7 +10,7 @@ const Navbar = () => {
         Stayhub
       </div>
       {
-        localStorage.getItem("token")?(
+        (localStorage.getItem("token") && localStorage.getItem("type")==="user")?(
           <div className='w-10 h-10 rounded-full bg-blue-500 flex justify-center items-center'>
             {localStorage.getItem("username").split('')[0].toUpperCase()}
           </div>
