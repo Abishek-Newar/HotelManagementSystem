@@ -7,6 +7,7 @@ import AdminAuth from "./Pages/Admin/AdminAuth"
 import SearchPage from "./Pages/User/SearchPage"
 import BookHotel from "./Pages/User/BookHotel"
 import BookingSuccessful from "./Pages/User/BookingSuccessful"
+import Bookings from "./Pages/User/Bookings"
 
 
 function App() {
@@ -17,12 +18,12 @@ function App() {
     <Route path="/"  element={<Landing />} />
       <Route path="/auth"  element={<UserAuth />} />
       <Route path="/seller/auth"  element={<SellerAuth />} />
-      <Route path="/seller/add" element={<AddHotel />} />
       <Route path="/seller/dashboard" element={<SellerDashboard />}  />
       <Route path="/admin/auth" element={<AdminAuth />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/booknow" element={<BookHotel />} />
       <Route path="/booksucc" element={<BookingSuccessful />} />
+      <Route path="/bookings" element={<Bookings />} />
     </Routes>
     </BrowserRouter>
     </>
