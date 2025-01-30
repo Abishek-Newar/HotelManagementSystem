@@ -87,6 +87,14 @@ export const Signin = async(req,res) =>{
 export const myBookings = async(req,res)=>{
     try{
         const book = await bookings.find({bookedBy: req.userId})
+        .populate({
+            path: 'hotelId',
+            select: 'hotelName area city price image'
+        })
+        .populate({
+            path: "bookedBy",
+            select: 'name'
+        })
         res.json({
             bookings: book
         })
