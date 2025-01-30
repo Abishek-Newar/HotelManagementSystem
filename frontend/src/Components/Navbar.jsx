@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className=' bg-bgColor fixed h-[8vh] z-30 w-[100%] shadow-sm'>
       <div className='flex justify-between items-center w-full px-20 h-full'>
-      <div className='font-logo text-3xl' onClick={()=>{navigate("/")}}>
+      <div className='font-logo text-3xl cursor-pointer' onClick={()=>{navigate("/")}}>
         Stayhub
       </div>
       {
