@@ -14,9 +14,10 @@ export const adminSignin = async(req,res) =>{
         if(!success.success){
             return res.status(403).json({msg: "input not in format"})
         }
+        
         const response = await admin.findOne({
-            username: body.username,
-            password: body.password
+            username:body.username,
+            password:body.password
         })
         if(!response || response == null){
             return res.status(403).json({
