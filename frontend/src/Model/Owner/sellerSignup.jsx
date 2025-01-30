@@ -31,8 +31,9 @@ const SellerSignup = ({authType}) => {
             toast.success("Signup Successful")
             localStorage.setItem("token",response.data.token)
         localStorage.setItem("username",response.data.username)
+        localStorage.setItem("type","owner")
             setTimeout(()=>{
-                navigate("/seller/add")
+                navigate("/seller/dashboard")
             },2000)
         } catch (error) {
             toast.error("invalid credentials")

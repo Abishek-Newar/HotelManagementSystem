@@ -23,6 +23,7 @@ const SellerSignin = ({authType}) => {
             toast.success("Signin Successful")
             localStorage.setItem("token",response.data.token)
             localStorage.setItem("username",response.data.ownername)
+            localStorage.setItem("type","owner")
             setTimeout(()=>{
                 navigate("/seller/dashboard")
             },2000)

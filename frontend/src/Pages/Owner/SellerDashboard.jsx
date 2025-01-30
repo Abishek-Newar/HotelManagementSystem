@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 const SellerDashboard = () => {
   const navigate = useNavigate()
   useEffect(()=>{
-    if(!localStorage.getItem("token") || localStorage.getItem("userType") !== "owner"){
+    if(!localStorage.getItem("token") || localStorage.getItem("type") !== "owner"){
       navigate("/seller/auth")
     }
   },[])
