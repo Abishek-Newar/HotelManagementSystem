@@ -39,7 +39,15 @@ export const adminSignin = async(req,res) =>{
 
 export const AllBookings = async(req,res)=>{
     try {
-        const response = await bookings.find([]).populate('hotelName','name')
+        const response = await bookings.find({})
+        .populate({
+            path: 'hotelId',
+            select: 'hotelName'
+        })
+        .populate({
+            path: "bookedBy",
+            select: 'name'
+        })
         res.json(response)
     } catch (error) {
         console.log("error while feting all bookings",error)
