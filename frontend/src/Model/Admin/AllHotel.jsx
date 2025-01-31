@@ -18,11 +18,20 @@ const AllHotel = () => {
     serverCall()
   },[])
 
+  async function handleDelete(id){
+    const response = await axios.delete(`${BACKEND_URL}/admin/deleteHotel`,{
+      data: {id:id},
+      headers:{
+        authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    }) 
+  }
+
   return (
     <div className='flex flex-col items-center'>
       {
         data.map((item,index)=>(
-          <HotelCard key={index} item={item} buttonName="View Details" buttonClick={()=>{}} />
+          <HotelCard key={index} item={item} buttonName="Delete" buttonClick={()=>{handleDelete(item._id)}} />
         ))
       }
     </div>

@@ -12,7 +12,7 @@ const AdminSidebar = ({setPage}) => {
         set: ()=>setPage("add")
       }]
   return (
-    <div className='xl:w-[20vw] bg-[#FFAE27] min-h-screen border flex flex-col items-center'>
+    <div className='xl:w-[20vw] bg-[#FFAE27] min-h-screen  border flex flex-col items-center'>
         <div className='text-3xl font-logo text-center pt-8 pb-14 relative w-full '>
             Stayhub
             

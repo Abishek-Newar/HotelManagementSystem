@@ -10,6 +10,7 @@ import { accountDeleteMessage, sendWarningMail } from "../../lib/mailer.js"
 export const adminSignin = async(req,res) =>{
     const body = req.body 
     try {
+        console.log(body)
         const success = adminSigninValidator.safeParse(body)
         if(!success.success){
             return res.status(403).json({msg: "input not in format"})
@@ -44,7 +45,7 @@ export const AddAdmin = async(req,res)=>{
         if(!success.success){
             return res.status(403).json({msg: "input not in format"})
         }
-
+        
         const admins = await admin.find({})
         if(admins.length === 3){
             return res.status(401).json({
@@ -104,10 +105,15 @@ export const AllHotels = async(req,res)=>{
 export const deleteHotel = async(req,res)=>{
     const body = req.body
     try {
-        const respones = await hotel.deleteOne({_id: body.id})
+        const respones = await hotel.findOne({_id: body.id})
+        await hotel.deleteOne({_id: body.id})
+        await bookings.deleteMany({
+            hotelId: respones._id
+        })
         const user = await owner.findOne({
             _id: respones.createdBy
         })
+        console.log(user)
         await accountDeleteMessage(user.email)
         res.json({msg: "hotel deleted"})
     } catch (error) {

@@ -1,6 +1,4 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom"
-import { useSelector } from 'react-redux'
 
 
 const HotelCard = ({item,buttonName,buttonClick}) => {
