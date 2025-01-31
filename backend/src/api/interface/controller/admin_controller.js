@@ -37,16 +37,47 @@ export const adminSignin = async(req,res) =>{
 }
 
 
+export const AddAdmin = async(req,res)=>{
+    const body = req.body
+    try {
+        const success = adminSigninValidator.safeParse(body)
+        if(!success.success){
+            return res.status(403).json({msg: "input not in format"})
+        }
+
+        const admins = await admin.find({})
+        if(admins.length === 3){
+            return res.status(401).json({
+                msg: "maximum admin reached"
+            })
+        }
+        const response = await admin.create({
+            username: body.username,
+            password: body.password
+        })
+        const token = await jwt.sign(response._id.toHexString(),env.SECRET_KEY)
+
+        res.json({
+            token: token
+        })
+    } catch (error) {
+        console.log("error while adding admin",error)
+        res.status(401).json({
+            msg: "error while adding admin"
+        })
+    }
+}
+
 export const AllBookings = async(req,res)=>{
     try {
         const response = await bookings.find({})
         .populate({
             path: 'hotelId',
-            select: 'hotelName'
+            select: 'hotelName area city state price image'
         })
         .populate({
             path: "bookedBy",
-            select: 'name'
+            select: 'name email'
         })
         res.json(response)
     } catch (error) {

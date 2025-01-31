@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BACKEND_URL } from '../../../lib/config'
 import axios from "axios"
+import { AdminBookingCard } from '../../Components/HotelCard'
 const AllBookings = () => {
     const [data,setData] = useState([])
     React.useEffect(()=>{
@@ -10,14 +11,17 @@ const AllBookings = () => {
                     Authorization:`Bearer ${localStorage.getItem("token")}`
                 }
             })
+            setData(response.data)
             console.log(response.data)
         }
         serverCall()
     },[])
   return (
-    <div>
+    <div className='flex flex-col items-center'>
         {
-            
+            data.map((item,index)=>(
+                <AdminBookingCard key={index} item={item} />
+            ))
         }
     </div>
   )

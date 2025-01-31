@@ -9,7 +9,7 @@ const Bookings = () => {
     const [loading,setLoading] = React.useState(true)
     const navigate = useNavigate()
     useEffect(()=>{
-        if(!localStorage.getItem("token") || localStorage.getItem("type")==="user"){
+        if(!localStorage.getItem("token") || localStorage.getItem("type")!=="user"){
             navigate("/")
         }
     },[])

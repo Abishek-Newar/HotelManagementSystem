@@ -18,6 +18,7 @@ const BookHotel = () => {
             toDate: data.searchDetails.toDate,
             guests: data.searchDetails.guests,
             rooms: data.searchDetails.rooms,
+            bill: (parseInt(data.searchDetails.rooms) * parseInt(data.hotelDetails.price)),
             RoomType: data.searchDetails.roomType,
             hotelId: data.hotelDetails._id
       }
@@ -57,6 +58,7 @@ const BookHotel = () => {
           <li>Rooms: <span className='text-green-500'>{data.searchDetails.rooms}</span></li>
           <li>Room Type: <span className='text-green-500'>{data.searchDetails.roomType}</span></li>
           <li>Guests: <span className='text-green-500'>{data.searchDetails.guests}</span></li>
+          <li>Bill: <span className='text-green-500'>{parseInt(data.searchDetails.rooms) * parseInt(data.hotelDetails.price)}</span></li>
         </ul>
         </div>
       </div>

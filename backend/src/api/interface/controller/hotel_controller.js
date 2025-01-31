@@ -124,6 +124,7 @@ export const bookHotel = async(req,res)=>{
             toDate: new Date(body.toDate),
             guests: body.guests,
             rooms: body.rooms,
+            bill:body.bill,
             RoomType: body.RoomType,
             bookedBy: req.userId,
             hotelId: body.hotelId

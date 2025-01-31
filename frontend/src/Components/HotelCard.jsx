@@ -20,3 +20,37 @@ const HotelCard = ({item,buttonName,buttonClick}) => {
 }
 
 export default HotelCard
+
+
+export const AdminBookingCard = ({item}) =>{
+
+  return (
+    <div className='w-[70%] border-b flex justify-around p-2 items-center font-primary'>
+      <div className='w-32 h-32' style={{background: `url(${item.hotelId[0].image})`,backgroundSize:"cover"}}>
+      </div>
+      <div>
+        <ul>
+          <li className='font-bold uppercase'>Hotel Details</li>
+          <li>Hotel Name: {item.hotelId[0].hotelName}</li>
+          <li>Address: {item.hotelId[0].address}</li>
+          <li>Price: {item.hotelId[0].price}</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li className='font-bold uppercase'>User Details: </li>
+          <li>Name: {item.bookedBy[0].name}</li>
+          <li>Email: {item.bookedBy[0].email}</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+        <li className='font-bold uppercase'>Booking Details:</li>
+        <li>From: {item.fromDate.slice(0,10)}</li>
+        <li>To: {item.toDate.slice(0,10)}</li>
+        <li>Rooms: {item.rooms}</li>
+        </ul>
+      </div>
+    </div>
+  )
+}
