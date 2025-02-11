@@ -31,7 +31,7 @@ const AddAdmin = () => {
     }
   }
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center w-full min-h-screen">
       <form onSubmit={(e)=>{handleSubmit(e)}} className='w-[400px] p-4 flex flex-col gap-4 font-primary'>
       <Toaster />
       <h1 className="text-3xl text-center uppercase font-bold">Add Admin</h1>

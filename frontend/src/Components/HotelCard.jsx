@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const HotelCard = ({item,buttonName,buttonClick}) => {
+const HotelCard = ({item,buttonName,buttonClick,children}) => {
   
   
   return (
@@ -12,7 +12,10 @@ const HotelCard = ({item,buttonName,buttonClick}) => {
             <li className='text-lg font-semibold'>{item.area},{item.city}</li>
             <li className='text-xl '>$ {item.price}</li>
         </ul>
+        <div className='flex gap-2'>
         <button className='bg-secondaryC h-12 text-white p-2 rounded-lg font-bold uppercase' onClick={buttonClick}>{buttonName}</button>
+        {children}
+        </div>
     </div>
   )
 }
