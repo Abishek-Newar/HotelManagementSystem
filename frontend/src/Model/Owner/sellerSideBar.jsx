@@ -11,9 +11,6 @@ const SellerSideBar = ({page,setPage,setShowSidebar,showSidebar}) => {
     },{
       name: "My Hotels",
       set: ()=>setPage("myhotel")
-    },{
-      name: "Edit Hotel",
-      set: ()=>setPage("edit")
     }]
   return (
     <SideBar details={items} setShowSidebar={setShowSidebar} showSidebar={showSidebar}  />

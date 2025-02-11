@@ -25,7 +25,7 @@ const MyHotels = () => {
             <div>
              {
                 hotels.map((item,index)=>(
-                    <HotelCard item={item} />
+                    <HotelCard item={item} buttonName="view" />
                 ))
              }
             </div>

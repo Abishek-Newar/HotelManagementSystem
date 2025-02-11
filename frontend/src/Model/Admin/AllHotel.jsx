@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BACKEND_URL } from '../../../lib/config'
 import axios from "axios"
 import HotelCard from '../../Components/HotelCard'
+import { toast, Toaster } from 'sonner'
 const AllHotel = () => {
   const [data,setData]  =useState([])
   useEffect(()=>{
@@ -28,19 +29,33 @@ const AllHotel = () => {
   }
 
   async function handleWarning(id){
-    const response = await axios.post(`${BACKEND_URL}/admin/sendwarning`)
+    try {
+      const response = await axios.post(`${BACKEND_URL}/admin/sendwarning`,{createdBy: id},{
+        headers:{
+          authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      })
+      toast.success("warning send")
+    } catch (error) {
+      console.log(error)
+      toast.error("error while sending warning")
+    }
   }
 
   return (
+    <>
     <div className='flex flex-col items-center'>
       {
         data.map((item,index)=>(
           <HotelCard key={index} item={item} buttonName="Delete" buttonClick={()=>{handleDelete(item._id)}} >
-            <button className='bg-red-500 h-12 text-white p-2 rounded-lg font-bold uppercase'>Warning</button>
+            <button onClick={()=>{handleWarning(item.createdBy)}} className='bg-red-500 h-12 text-white p-2 rounded-lg font-bold uppercase'>Warning</button>
           </HotelCard>
         ))
       }
+      
     </div>
+    <Toaster />
+    </>
   )
 }
 
